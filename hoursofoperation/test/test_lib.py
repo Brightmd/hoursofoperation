@@ -8,6 +8,8 @@ from pytz import utc
 
 from mock import patch
 
+from pytest import raises
+
 from hoursofoperation import lib
 
 
@@ -32,28 +34,57 @@ def test_hoursFromConfig():
     }
     expected = {
         'open': [
-            'sat 10:00 AM',
+            'fri 8:00 AM',
             'mon 8:00 AM',
-            'tue 8:00 AM',
-            'wed 8:00 AM',
+            'sat 10:00 AM',
             'thu 8:00 AM',
-            'fri 8:00 AM'
+            'tue 8:00 AM',
+            'wed 8:00 AM'
         ],
         'close': [
-            'sun 12:00 AM',
-            'sat 4:00 PM',
+            'fri 6:00 PM',
             'mon 6:00 PM',
-            'tue 6:00 PM',
-            'wed 6:00 PM',
+            'sat 4:00 PM',
+            'sun 12:00 AM',
             'thu 6:00 PM',
-            'fri 6:00 PM'
+            'tue 6:00 PM',
+            'wed 6:00 PM'
         ],
         'default': {
             'close': '6:00 PM', 
             'open': '8:00 AM'
         },
     }
+
     assert lib.hoursFromConfig(original) == expected
+
+
+def test_hoursFromConfigOpenAfterClose():
+    """
+    Do I raise an exception if an open time is after a close time?
+    """
+    hours = {
+        'timezone': 'US/Eastern',
+        'default': {
+            'open': '8:00 PM',
+            'close': '6:00 PM'
+        }
+    }
+    raises(lib.HoursError, lib.hoursFromConfig, hours)
+
+
+def test_hoursFromConfigMissingDay():
+    """
+    Do I raise an exception if any days were not specified?
+    """
+    hours = {
+        'timezone': 'US/Eastern',
+        'mon': {
+            'open': '8:00 AM',
+            'close': '6:00 PM'
+        }
+    }
+    raises(lib.HoursError, lib.hoursFromConfig, hours)
 
 
 def test_hoursDatetime():

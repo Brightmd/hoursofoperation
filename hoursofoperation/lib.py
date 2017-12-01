@@ -9,6 +9,12 @@ from dateutil.tz import tzlocal
 from codado.py import utcnowTZ, parseDate
 
 
+class HoursError(Exception):
+    """
+    There was an invalid hours of operation setting
+    """
+
+
 def hoursFromConfig(originalHours):
     """
     Return the data structure for hours of operation.
@@ -24,9 +30,9 @@ def hoursFromConfig(originalHours):
     hrs = dict((key, value) for key, value in originalHours.iteritems() if key != 'timezone')
     if hrs:
         for day, times in hrs.items():
-            if times.get('open') and times.get('close'):
-                assert parseDate(times['open']).time() < parseDate(times['close']).time(),\
-                    'Open time incorrectly set after close time for %s' % day
+            if times.get('open') and times.get('close') and \
+               parseDate(times['open']).time() >= parseDate(times['close']).time():
+                raise HoursError('Open time incorrectly set after close time for %s' % day)
             for closeOrOpen, time in times.items():
                 if day == 'default' and time:
                     hours['default'][closeOrOpen] = time
@@ -35,8 +41,8 @@ def hoursFromConfig(originalHours):
                     specifiedDays.add(parseDate(day).weekday())
 
         # there must be a default value if some days are unspecified
-        if len(specifiedDays) < 7:
-            assert originalHours['default'], 'Missing hours of operation for at least one weekday'
+        if len(specifiedDays) < 7 and not originalHours.get('default'):
+            raise HoursError('Missing hours of operation for at least one weekday')
 
         # for each weekday that was not specified, set it to the default
         days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
@@ -46,6 +52,9 @@ def hoursFromConfig(originalHours):
                     hours['close'].append(day + ' ' + hours['default']['close'])
                 if hours['default'].get('open'):
                     hours['open'].append(day + ' ' + hours['default']['open'])
+
+        hours['open'].sort()
+        hours['close'].sort()
     
     return hours
 
