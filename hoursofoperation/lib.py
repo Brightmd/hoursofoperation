@@ -18,9 +18,47 @@ class HoursError(Exception):
 def hoursFromConfig(originalHours):
     """
     Return the data structure for hours of operation.
-    'close' and 'open' are lists of times (e.g. 'Monday 8:00 PST').
-    'default' is a dict containing 'open' and 'close' times to use when
+
+    - 'close' and 'open' are lists of times (e.g. 'Monday 8:00 PST').
+    - 'default' is a dict containing 'open' and 'close' times to use when
     not specified for any given day of the week.
+
+    Input is of the format:
+        {
+            'timezone': 'US/Pacific',
+            'default': {
+                'open': '9:00 AM',
+                'close': '6:00 PM'
+            },
+            'sun': {
+                'close': '12:00 AM'
+            }
+        }
+    
+    Output will look like:
+        {
+            'close': [
+                'fri': '6:00 PM',
+                'mon': '6:00 PM',
+                'sat': '6:00 PM',
+                'sun': '12:00 AM',
+                'thu': '6:00 PM',
+                'tue': '6:00 PM',
+                'wed': '6:00 PM',
+            ],
+            'open': [
+                'fri': '9:00 AM',
+                'mon': '9:00 AM',
+                'sat': '9:00 AM',
+                'thu': '9:00 AM',
+                'tue': '9:00 AM',
+                'wed': '9:00 AM',
+            ],
+            'default': {
+                'open': '9:00 AM',
+                'close': '6:00 PM'
+            }
+        }
     """
     hours = {'close': [],
              'open': [],
