@@ -1,13 +1,15 @@
 from setuptools import setup
 from inspect import cleandoc
 
-from hoursofoperation._version import __version__
+
+_version = {}
+execfile('hoursofoperation/_version.py', _version)
 
 
 setup(
   name = 'hoursofoperation',
-  packages = ['hoursofoperation'],
-  version = __version__,
+  packages = ['hoursofoperation', 'hoursofoperation.test'],
+  version = _version['__version__'],
   description = 'Utilities for loading and doing calculations with a partner\'s hours of operations configration.',
   author = 'Ashley Fisher',
   author_email = 'fish.ash@gmail.com',
