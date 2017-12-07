@@ -17,9 +17,9 @@ setup(
   keywords = ['hours'],
   classifiers = [],
   scripts = [],
-    install_requires=cleandoc('''
-      codado>=0.4.997,<0.6
-      python-dateutil==2.4.0
-      pytz==2015.4
-      ''').split()
+  install_requires=cleandoc('''
+    codado>=0.4.997,<0.6
+    python-dateutil==2.4.0
+    pytz==2015.4
+    ''').split()
 )
