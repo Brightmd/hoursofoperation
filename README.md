@@ -14,6 +14,10 @@ twine upload dist/*<version>*
 ```
 
 ## Change Log
+### [0.1.7] - 2017-12-07
+#### Changed
+- Fixed issues in setup.py that were preventing package build
+
 ### [0.1.6] - 2017-12-07
 #### Added
 - Dependendies in setup.py
@@ -24,4 +28,4 @@ twine upload dist/*<version>*
 
 [0.1.5]: https://github.com/Brightmd/hoursofoperation/tree/0.1.5
 [0.1.6]: https://github.com/Brightmd/hoursofoperation/compare/0.1.5...0.1.6
-
+[0.1.7]: https://github.com/Brightmd/hoursofoperation/compare/0.1.6...0.1.7
