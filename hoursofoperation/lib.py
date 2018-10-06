@@ -65,13 +65,13 @@ def hoursFromConfig(originalHours):
              'default': {}}
     specifiedDays = set()
 
-    hrs = dict((key, value) for key, value in originalHours.iteritems() if key != 'timezone')
+    hrs = dict((key, value) for key, value in list(originalHours.items()) if key != 'timezone')
     if hrs:
-        for day, times in hrs.items():
+        for day, times in list(hrs.items()):
             if times.get('open') and times.get('close') and \
                parseDate(times['open']).time() >= parseDate(times['close']).time():
                 raise HoursError('Open time incorrectly set after close time for %s' % day)
-            for closeOrOpen, time in times.items():
+            for closeOrOpen, time in list(times.items()):
                 if day == 'default' and time:
                     hours['default'][closeOrOpen] = time
                 elif time:

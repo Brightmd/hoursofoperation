@@ -1,4 +1,4 @@
-codado==0.4.996
+codado>=0.6,<0.7
 mock==2.0.0
 pip>=9.0.1
 pyflakes==1.6.0

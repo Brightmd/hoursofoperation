@@ -1,9 +1,10 @@
-from setuptools import setup
 from inspect import cleandoc
+
+from setuptools import setup
 
 
 _version = {}
-execfile('hoursofoperation/_version.py', _version)
+exec(open('hoursofoperation/_version.py').read(), _version)
 
 
 setup(
@@ -18,7 +19,7 @@ setup(
   classifiers = [],
   scripts = [],
   install_requires=cleandoc('''
-    codado>=0.4.997,<0.6
+    codado>=0.6,<0.7
     python-dateutil==2.4.0
     pytz==2015.4
     ''').split()
