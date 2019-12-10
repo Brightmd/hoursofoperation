@@ -16,7 +16,7 @@ twine upload dist/*<version>*
 ## Change Log
 ### [0.1.9] - 2019-12-09
 #### Added
-- Python 3.6+ support!
+- Python 3.7 and some build/deployment issues cleaned.
 
 ### [0.1.8] - 2018-10-05
 #### Added
