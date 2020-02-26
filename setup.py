@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
 
-__version__ = '0.1.10'
+__version__ = '0.1.11'
 
 
 config = dict(
     name='hoursofoperation',
-    packages=find_packages('.', include=['hoursofoperation.*']),
+    packages=find_packages('.', include=['hoursofoperation', 'hoursofoperation.*']),
     version=__version__,
     description = 'Utilities for loading and doing calculations with a partner\'s hours of operations configration.',
     author='Ashley Fisher',
