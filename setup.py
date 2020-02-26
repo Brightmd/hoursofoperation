@@ -1,14 +1,13 @@
 from setuptools import setup, find_packages
 
 
-_version = {}
-exec(open('hoursofoperation/_version.py').read(), _version)
+__version__ = '0.1.10'
 
 
 config = dict(
     name='hoursofoperation',
     packages=find_packages('.', include=['hoursofoperation.*']),
-    version=_version['__version__'],
+    version=__version__,
     description = 'Utilities for loading and doing calculations with a partner\'s hours of operations configration.',
     author='Ashley Fisher',
     author_email='fish.ash@gmail.com',
@@ -27,6 +26,7 @@ config = dict(
             'pytest-coverage',
             'pytest-flakes',
             'tox',
+            'wheel',
     ]},
 )
 

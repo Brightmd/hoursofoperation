@@ -4,17 +4,22 @@ Utilities for loading and doing calculations with a partner's hours of operation
 
 ## For maintainers: How to build
 
-1. Increment `__version__` in `__version.py`.
+1. Increment `__version__` in `setup.py`.
 2. Update the Change Log below.
 3. Run the following:
+   ```
+   rm -i dist/*
+   python setup.py sdist bdist_wheel
+   ```
 
-```
-python setup.py sdist bdist_wheel
-twine upload dist/*<version>*
-```
+4. Add and push a release tag
+5. Run the following:
+   ```
+   twine upload dist/*
+   ```
 
 ## Change Log
-### [0.1.9] - 2019-12-09
+### [0.1.10] - 2019-02-26
 #### Added
 - Python 3.7 and some build/deployment issues cleaned.
 
@@ -34,7 +39,7 @@ twine upload dist/*<version>*
 #### Changed
 - Minor stylistic updates
 
-[0.1.9]: https://github.com/Brightmd/hoursofoperation/compare/release-0.1.8...release-0.1.9
+[0.1.10]: https://github.com/Brightmd/hoursofoperation/compare/release-0.1.8...release-0.1.10
 [0.1.8]: https://github.com/Brightmd/hoursofoperation/compare/0.1.7...release-0.1.8
 [0.1.7]: https://github.com/Brightmd/hoursofoperation/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/Brightmd/hoursofoperation/compare/0.1.5...0.1.6

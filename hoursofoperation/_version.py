@@ -1,1 +1,8 @@
-__version__ = '0.1.9'
+import pkg_resources
+
+
+__version__ = pkg_resources.get_distribution('hoursofoperation').version
+
+
+__all__ = ["__version__"]
+
