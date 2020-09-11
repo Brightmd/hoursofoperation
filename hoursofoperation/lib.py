@@ -4,8 +4,6 @@ operations configration.
 """
 import pytz
 
-from dateutil.tz import tzlocal
-
 from codado.py import utcnowTZ, parseDate
 
 
@@ -34,7 +32,7 @@ def hoursFromConfig(originalHours):
                 'close': '12:00 AM'
             }
         }
-    
+
     Output will look like:
         {
             'close': [
@@ -93,7 +91,7 @@ def hoursFromConfig(originalHours):
 
         hours['open'].sort()
         hours['close'].sort()
-    
+
     return hours
 
 
@@ -155,8 +153,8 @@ def hoursOfOperation(hours, timezone):
                         break
                 i += 1
 
-        # reformat back to local timezone
-        formatter = lambda x: x.astimezone(tzlocal()).strftime(fmt) if x else None
+        # reformat to specified timezone
+        formatter = lambda x: x.astimezone(timezone).strftime(fmt) if x else None
 
         closeTime = formatter(operatingHours['close'])
         openTime = formatter(operatingHours['open'])
