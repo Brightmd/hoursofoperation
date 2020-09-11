@@ -2,6 +2,11 @@
 
 Utilities for loading and doing calculations with a partner's hours of operations configration.
 
+## Install dependencies
+   ```
+   pip install -e ".[dev]"
+   ```
+
 ## For maintainers: How to build
 
 1. Increment `__version__` in `setup.py`.
