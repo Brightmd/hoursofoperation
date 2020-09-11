@@ -19,6 +19,10 @@ Utilities for loading and doing calculations with a partner's hours of operation
    ```
 
 ## Change Log
+### [0.1.12] - 2020-09-10
+#### Changed
+- Change hoursOfOperation to use the passed in timezone instead of the local timezone
+
 ### [0.1.11] - 2019-02-26
 #### Added
 - Python 3.7 and some build/deployment issues cleaned.
