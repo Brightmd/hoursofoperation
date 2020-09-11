@@ -48,6 +48,7 @@ Utilities for loading and doing calculations with a partner's hours of operation
 #### Changed
 - Minor stylistic updates
 
+[0.1.12]: https://github.com/Brightmd/hoursofoperation/compare/release-0.1.11...release-0.1.12
 [0.1.11]: https://github.com/Brightmd/hoursofoperation/compare/release-0.1.8...release-0.1.11
 [0.1.8]: https://github.com/Brightmd/hoursofoperation/compare/0.1.7...release-0.1.8
 [0.1.7]: https://github.com/Brightmd/hoursofoperation/compare/0.1.6...0.1.7
