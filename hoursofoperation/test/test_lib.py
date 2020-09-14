@@ -147,11 +147,6 @@ def test_hoursOfOperation():
     """
     Do I return the expected hours of operation?
     """
-    # pretend we are currently located in China(CST) = China Standard Time
-    # China does not observe daylight saving time, so this test theoretically won't break for that reason
-    central = pytz.timezone('Asia/Shanghai')
-    pLocalTZ = patch.object(lib, 'tzlocal', return_value=central, autospec=True)
-
     tz = 'US/Samoa'
     hours = {
         'default': {
@@ -171,12 +166,12 @@ def test_hoursOfOperation():
     fakeToday = datetime.datetime(year=2016, month=9, day=1, hour=16, tzinfo=utc)
     putcnowTZ = patch.object(lib, 'utcnowTZ', return_value=fakeToday, autospec=True)
     pNow = patch.object(datetime, 'datetime', mockDateTime)
-    with putcnowTZ, pLocalTZ, pNow:
+    with putcnowTZ, pNow:
         # Thu, Samoa hours are 9/1 from 9:00 AM - 3:00 PM --> Shanghai hours are 9/2 from 4:00 AM - 10:00 AM
         # Currently, it is 9/2/2016 at 12:00 AM in Shanghai
         # In Shanghai we expect these hours of operation
-        expected = {'close': 'Friday 10:00 AM CST',
-                    'open': 'Friday 04:00 AM CST',
+        expected = {'close': 'Thursday 03:00 PM SST',
+                    'open': 'Thursday 09:00 AM SST',
                     'nextOpen': None,
                     'openLater': True,
                     'currentlyClosed': True}
@@ -185,13 +180,13 @@ def test_hoursOfOperation():
     fakeToday = datetime.datetime(year=2016, month=9, day=2, hour=4, tzinfo=utc)
     putcnowTZ = patch.object(lib, 'utcnowTZ', return_value=fakeToday, autospec=True)
     pNow = patch.object(datetime, 'datetime', mockDateTime)
-    with putcnowTZ, pLocalTZ, pNow:
+    with putcnowTZ, pNow:
         # Thu, Samoa hours are 9/1 from 9:00 AM - 3:00 PM --> Shanghai hours are 9/2 from 4:00 AM - 10:00 AM
         # Currently, it is 9/2/2016 at 12:00 PM in Shanghai
         # In Shanghai we expect these hours of operation
-        expected = {'close': 'Friday 10:00 AM CST',
-                    'open': 'Friday 04:00 AM CST',
-                    'nextOpen': 'Saturday 04:00 AM CST',
+        expected = {'close': 'Thursday 03:00 PM SST',
+                    'open': 'Thursday 09:00 AM SST',
+                    'nextOpen': 'Friday 09:00 AM SST',
                     'openLater': False,
                     'currentlyClosed': True}
         assert lib.hoursOfOperation(hours, tz) == expected
@@ -199,12 +194,12 @@ def test_hoursOfOperation():
     fakeToday = datetime.datetime(year=2016, month=9, day=2, hour=1, tzinfo=utc)
     putcnowTZ = patch.object(lib, 'utcnowTZ', return_value=fakeToday, autospec=True)
     pNow = patch.object(datetime, 'datetime', mockDateTime)
-    with pNow, pLocalTZ, putcnowTZ:
+    with pNow, putcnowTZ:
         # Thu, Samoa hours are 9/1 from 9:00 AM - 3:00 PM --> Shanghai hours are 9/2 from 4:00 AM - 10:00 AM
         # Currently, it is 9/2/2016 at 9:00 AM in Shanghai
         # In Shanghai we expect these hours of operation
-        expected = {'close': 'Friday 10:00 AM CST',
-                    'open': 'Friday 04:00 AM CST',
+        expected = {'close': 'Thursday 03:00 PM SST',
+                    'open': 'Thursday 09:00 AM SST',
                     'nextOpen': None,
                     'openLater': False,
                     'currentlyClosed': False}

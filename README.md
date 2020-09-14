@@ -2,6 +2,11 @@
 
 Utilities for loading and doing calculations with a partner's hours of operations configration.
 
+## Install dependencies
+   ```
+   pip install -e ".[dev]"
+   ```
+
 ## For maintainers: How to build
 
 1. Increment `__version__` in `setup.py`.
@@ -19,6 +24,10 @@ Utilities for loading and doing calculations with a partner's hours of operation
    ```
 
 ## Change Log
+### [0.1.12] - 2020-09-10
+#### Changed
+- Change hoursOfOperation to use the passed in timezone instead of the local timezone
+
 ### [0.1.11] - 2019-02-26
 #### Added
 - Python 3.7 and some build/deployment issues cleaned.
@@ -39,6 +48,7 @@ Utilities for loading and doing calculations with a partner's hours of operation
 #### Changed
 - Minor stylistic updates
 
+[0.1.12]: https://github.com/Brightmd/hoursofoperation/compare/release-0.1.11...release-0.1.12
 [0.1.11]: https://github.com/Brightmd/hoursofoperation/compare/release-0.1.8...release-0.1.11
 [0.1.8]: https://github.com/Brightmd/hoursofoperation/compare/0.1.7...release-0.1.8
 [0.1.7]: https://github.com/Brightmd/hoursofoperation/compare/0.1.6...0.1.7
