@@ -19,7 +19,7 @@ def test_hoursFromConfig():
     times for every day of the week?
     """
     original = {
-        'timezone': 'US/Eastern',
+        'timezone': 'US/Mountain',
         'default': {
             'open': '8:00 AM',
             'close': '6:00 PM'
@@ -51,7 +51,7 @@ def test_hoursFromConfig():
             'wed 6:00 PM'
         ],
         'default': {
-            'close': '6:00 PM', 
+            'close': '6:00 PM',
             'open': '8:00 AM'
         },
     }
@@ -170,8 +170,8 @@ def test_hoursOfOperation():
         # Thu, Samoa hours are 9/1 from 9:00 AM - 3:00 PM --> Shanghai hours are 9/2 from 4:00 AM - 10:00 AM
         # Currently, it is 9/2/2016 at 12:00 AM in Shanghai
         # In Shanghai we expect these hours of operation
-        expected = {'close': 'Thursday 03:00 PM SST',
-                    'open': 'Thursday 09:00 AM SST',
+        expected = {'close': 'Thursday 03:00 PM -1100',
+                    'open': 'Thursday 09:00 AM -1100',
                     'nextOpen': None,
                     'openLater': True,
                     'currentlyClosed': True}
@@ -184,9 +184,9 @@ def test_hoursOfOperation():
         # Thu, Samoa hours are 9/1 from 9:00 AM - 3:00 PM --> Shanghai hours are 9/2 from 4:00 AM - 10:00 AM
         # Currently, it is 9/2/2016 at 12:00 PM in Shanghai
         # In Shanghai we expect these hours of operation
-        expected = {'close': 'Thursday 03:00 PM SST',
-                    'open': 'Thursday 09:00 AM SST',
-                    'nextOpen': 'Friday 09:00 AM SST',
+        expected = {'close': 'Thursday 03:00 PM -1100',
+                    'open': 'Thursday 09:00 AM -1100',
+                    'nextOpen': 'Friday 09:00 AM -1100',
                     'openLater': False,
                     'currentlyClosed': True}
         assert lib.hoursOfOperation(hours, tz) == expected
@@ -198,8 +198,8 @@ def test_hoursOfOperation():
         # Thu, Samoa hours are 9/1 from 9:00 AM - 3:00 PM --> Shanghai hours are 9/2 from 4:00 AM - 10:00 AM
         # Currently, it is 9/2/2016 at 9:00 AM in Shanghai
         # In Shanghai we expect these hours of operation
-        expected = {'close': 'Thursday 03:00 PM SST',
-                    'open': 'Thursday 09:00 AM SST',
+        expected = {'close': 'Thursday 03:00 PM -1100',
+                    'open': 'Thursday 09:00 AM -1100',
                     'nextOpen': None,
                     'openLater': False,
                     'currentlyClosed': False}

@@ -131,7 +131,7 @@ def hoursOfOperation(hours, timezone):
     Return a dictionary of relevant times for the current day.
     Expects "hours" to be in the format returned by hoursFromConfig.
     """
-    fmt = '%A %I:%M %p %Z'
+    fmt = '%A %I:%M %p %z'
     operatingHours = hoursDatetime(hours, timezone)
 
     timezone = pytz.timezone(timezone)

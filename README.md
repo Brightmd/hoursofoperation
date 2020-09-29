@@ -24,6 +24,10 @@ Utilities for loading and doing calculations with a partner's hours of operation
    ```
 
 ## Change Log
+### [0.1.13] - 2020-09-29
+#### Changed
+- Change hoursOfOperation to use timezone offset instead of timezone name (e.g. '-0400' instead of 'EDT')
+
 ### [0.1.12] - 2020-09-10
 #### Changed
 - Change hoursOfOperation to use the passed in timezone instead of the local timezone
